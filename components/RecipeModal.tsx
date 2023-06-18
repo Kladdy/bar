@@ -13,8 +13,6 @@ interface RecipeModalProps {
 const RecipeModal : React.FC<RecipeModalProps> = ({recipe, onClose}) => {
   const [editing, setEditing] = useState(false);
 
-
-
   return (
     <Transition.Root show={recipe == null ? false : true} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={onClose}>
@@ -54,7 +52,7 @@ const RecipeModal : React.FC<RecipeModalProps> = ({recipe, onClose}) => {
                   </div>
                 </div>
                 <div className="mt-2 text-gray-800 text-sm">
-                  <h5 className="font-semibold mt-6 mb-4">Ingridienser</h5>
+                  <h5 className="font-semibold mt-6 mb-4">Ingredienser</h5>
                   <RecipeIngredientsFeed 
                     recipe={recipe}
                     onUpdateRecipe={(recipe) => console.log(recipe)} 
