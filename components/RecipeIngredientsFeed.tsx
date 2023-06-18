@@ -73,7 +73,7 @@ const RecipeIngredientsFeed: React.FC<RecipeIngredientsFeedProps> = ({ recipe, o
                               onUpdateRecipe({ ...recipe, ingredients: newIngredients })
                             }}
                           />
-                          <div className="flex-none w-28 ">
+                          <div className="flex-none w-24 ">
                             <RecipeIngredientUnitSelect
                               recipe={recipe}
                               onUpdateRecipe={onUpdateRecipe}

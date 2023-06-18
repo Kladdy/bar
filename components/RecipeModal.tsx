@@ -4,13 +4,15 @@ import { BeakerIcon, CheckIcon } from '@heroicons/react/24/outline'
 import { IRecipe } from '@/common/types'
 import RecipeIngredientsFeed from './RecipeIngredientsFeed'
 import RecipeStepsFeed from './RecipeStepsFeed'
+import toast from 'react-hot-toast'
 
 interface RecipeModalProps {
   recipe: IRecipe
+  setRecipe: (recipe: IRecipe) => void
   onClose: () => void
 }
 
-const RecipeModal : React.FC<RecipeModalProps> = ({recipe, onClose}) => {
+const RecipeModal : React.FC<RecipeModalProps> = ({recipe, setRecipe, onClose}) => {
   const [editing, setEditing] = useState(false);
 
   return (
@@ -55,25 +57,56 @@ const RecipeModal : React.FC<RecipeModalProps> = ({recipe, onClose}) => {
                   <h5 className="font-semibold mt-6 mb-4">Ingredienser</h5>
                   <RecipeIngredientsFeed 
                     recipe={recipe}
-                    onUpdateRecipe={(recipe) => console.log(recipe)} 
+                    onUpdateRecipe={(recipe) => setRecipe(recipe)} 
                     viewOnly={!editing}
                   />
 
                   <h5 className="font-semibold mt-6 mb-4">Steg</h5>
                   <RecipeStepsFeed
                     recipe={recipe}
-                    onUpdateRecipe={(recipe) => console.log(recipe)}
+                    onUpdateRecipe={(recipe) => setRecipe(recipe)}
                     viewOnly={!editing}
                   />
                 </div>
-                <div className="mt-5 sm:mt-6">
-                  <button
-                    type="button"
-                    className="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                    onClick={() => onClose()}
-                  >
-                    Go back to dashboard
-                  </button>
+                <div className="mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
+                  {editing ? (
+                    <button
+                      type="button"
+                      className="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:col-start-2"
+                      onClick={() => {
+                        toast.success('Receptet uppdaterat')
+                        setEditing(false)
+                      }}
+                    >
+                      Spara
+                    </button>) : (
+                    <button
+                      type="button"
+                      className="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:col-start-2"
+                      onClick={() => setEditing(true)}
+                    >
+                      Redigera
+                    </button>
+                  )}
+                  {editing ? (
+                    <button
+                      type="button"
+                      className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:col-start-1 sm:mt-0"
+                      onClick={() => {
+                        setEditing(false)
+                      }}
+                    >
+                      Avbryt
+                    </button>) : (
+                    <button
+                      type="button"
+                      className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:col-start-1 sm:mt-0"
+                      onClick={() => onClose()}
+                    >
+                      Stäng
+                    </button>
+                  )}
+                  
                 </div>
               </Dialog.Panel>
             </Transition.Child>

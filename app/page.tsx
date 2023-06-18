@@ -20,6 +20,12 @@ export default function Home() {
       {openedRecipe && (
         <RecipeModal 
           recipe={openedRecipe} 
+          setRecipe={(recipe) =>
+            {
+              toast.success('Updated')
+              setOpenedRecipe(recipe)
+            }
+          }
           onClose={() => 
             {
               toast.success('Closed')
