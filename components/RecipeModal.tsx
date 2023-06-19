@@ -22,7 +22,7 @@ const RecipeModal : React.FC<RecipeModalProps> = ({recipe, setRecipe, onClose, i
   const submitIsDisabled = recipe.name === '' || recipe.ingredients.length === 0
 
   const submitRecipe = () => {
-    fetch('/api/recipes', {
+    fetch('/api', {
       method: 'POST',
       body: JSON.stringify(recipe),
     }).then((res) => {
