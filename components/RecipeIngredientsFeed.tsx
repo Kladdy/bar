@@ -61,7 +61,7 @@ const RecipeIngredientsFeed: React.FC<RecipeIngredientsFeedProps> = ({ recipe, o
                             type="text"
                             id="amount"
                             placeholder={"mängd"}
-                            className=" px-2  flex-none w-20 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block sm:text-sm border-gray-300 rounded-md"
+                            className=" px-2 dark:text-gray-800 flex-none w-20 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block sm:text-sm border border-gray-300 rounded-md"
                             value={recipe.ingredients[ingredientIndex].amount || ''}
                             onChange={(e) => {
                               const newIngredients = setFieldOnSpecificListEntry(
@@ -84,7 +84,7 @@ const RecipeIngredientsFeed: React.FC<RecipeIngredientsFeedProps> = ({ recipe, o
                             type="text"
                             id="name"
                             placeholder={"namn"}
-                            className=" px-2 flex-1 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block sm:text-sm border-gray-300 rounded-md"
+                            className=" px-2 dark:text-gray-800 flex-1 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block sm:text-sm border border-gray-300 rounded-md"
                             value={recipe.ingredients[ingredientIndex].name || ''}
                             onChange={(e) => {
                               const newIngredients = setFieldOnSpecificListEntry(

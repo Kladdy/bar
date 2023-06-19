@@ -90,24 +90,24 @@ export const mockRecipes: IRecipe[] = [
         amount: '8',
         unit: 'cl',
       },
-      {
-        id: '3',
-        name: 'tranbärsjuice',
-        amount: '8',
-        unit: 'cl',
-      },
-      {
-        id: '4',
-        name: 'limejuice',
-        amount: 'lite',
-        unit: '',
-      },
-      {
-        id: '5',
-        name: 'is',
-        amount: '',
-        unit: '',
-      },
+      // {
+      //   id: '3',
+      //   name: 'tranbärsjuice',
+      //   amount: '8',
+      //   unit: 'cl',
+      // },
+      // {
+      //   id: '4',
+      //   name: 'limejuice',
+      //   amount: 'lite',
+      //   unit: '',
+      // },
+      // {
+      //   id: '5',
+      //   name: 'is',
+      //   amount: '',
+      //   unit: '',
+      // },
     ],
     steps: [
       {

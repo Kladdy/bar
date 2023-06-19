@@ -50,7 +50,7 @@ const RecipeStepsFeed: React.FC<RecipeStepsFeedProps> = ({ recipe, onUpdateRecip
                           <TextareaAutosize
                             id={`step-${step.id}`}
                             minRows={1}
-                            className="px-2 py-1.5 resize-none shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md"
+                            className="px-2 dark:text-gray-800 py-1.5 resize-none shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md"
                             value={recipe.steps[stepIndex].description || ''}
                             onChange={(e) => {
                               const newSteps = setFieldOnSpecificListEntry(

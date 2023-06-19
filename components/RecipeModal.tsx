@@ -6,6 +6,10 @@ import RecipeIngredientsFeed from './RecipeIngredientsFeed'
 import RecipeStepsFeed from './RecipeStepsFeed'
 import toast from 'react-hot-toast'
 
+function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(' ')
+}
+
 interface RecipeModalProps {
   recipe: IRecipe
   setRecipe: (recipe: IRecipe) => void
@@ -14,6 +18,22 @@ interface RecipeModalProps {
 }
 
 const RecipeModal : React.FC<RecipeModalProps> = ({recipe, setRecipe, onClose, isNewRecipe}) => {
+
+  const submitIsDisabled = recipe.name === '' || recipe.ingredients.length === 0
+
+  const submitRecipe = () => {
+    fetch('/api/recipes', {
+      method: 'POST',
+      body: JSON.stringify(recipe),
+    }).then((res) => {
+      if (res.ok) {
+        toast.success('Receptet har skickats in för granskning. Tack för ditt bidrag!')
+        onClose()
+      } else {
+        toast.error('Något gick fel när receptet skulle skickas in. Försök igen senare.')
+      }
+    })
+  }
 
   return (
     <Transition.Root show={recipe == null ? false : true} as={Fragment}>
@@ -48,7 +68,7 @@ const RecipeModal : React.FC<RecipeModalProps> = ({recipe, setRecipe, onClose, i
                   </div>
                   <div className="mt-3 text-center sm:mt-5">
                     <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900 dark:text-gray-200">
-                      {recipe.name}
+                      {!!recipe.name ? recipe.name : (isNewRecipe ? 'Ny drink' : 'Drinkrecept')}
                     </Dialog.Title>
                     
                   </div>
@@ -85,15 +105,40 @@ const RecipeModal : React.FC<RecipeModalProps> = ({recipe, setRecipe, onClose, i
                     viewOnly={!isNewRecipe}
                   />
                 </div>
-                <div className="mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-1 sm:gap-3">
-                  <button
-                    type="button"
-                    className="mt-3 inline-flex w-full justify-center rounded-md bg-white dark:bg-gray-800  px-3 py-2 text-sm font-semibold text-gray-900 dark:text-gray-200 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900 sm:col-start-1 sm:mt-0"
-                    onClick={() => onClose()}
-                  >
-                    Stäng
-                  </button>
-                </div>
+                {isNewRecipe ? (
+                  <div className="mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
+                    <button
+                      disabled={submitIsDisabled}
+                      type="button"
+                      className={classNames("inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:col-start-2",
+                        submitIsDisabled ? "opacity-50 cursor-not-allowed" : "hover:bg-indigo-600"
+                      )}
+                      onClick={() => {
+                        submitRecipe()
+                      }}
+                    >
+                      Skicka
+                    </button>
+                    <button
+                      type="button"
+                      className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:col-start-1 sm:mt-0"
+                      onClick={() => onClose()}
+                    >
+                      Avbryt
+                    </button>
+                  </div>
+                ) : (
+                  <div className="mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-1 sm:gap-3">
+                    <button
+                      type="button"
+                      className="mt-3 inline-flex w-full justify-center rounded-md bg-white dark:bg-gray-800  px-3 py-2 text-sm font-semibold text-gray-900 dark:text-gray-200 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900 sm:col-start-1 sm:mt-0"
+                      onClick={() => onClose()}
+                    >
+                      Stäng
+                    </button>
+                  </div>
+                )}
+                
               </Dialog.Panel>
             </Transition.Child>
           </div>

@@ -37,12 +37,12 @@ const RecipeIngredientUnitSelect: React.FC<RecipeIngredientUnitSelectProps> = ({
     >
       {({ open }) => (
         <div className="relative w-full">
-          <Listbox.Button className="bg-white relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+          <Listbox.Button className="bg-white dark:text-gray-800 relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             <span
               className={classNames(
                 recipe.ingredients[ingredientIndex].unit && recipe.ingredients[ingredientIndex].unit !== 'none'
                   ? ''
-                  : 'text-gray-500',
+                  : 'text-gray-400 ',
                 'block truncate',
               )}
             >

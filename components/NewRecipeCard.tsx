@@ -9,7 +9,7 @@ export interface NewRecipeCardProps {
 const NewRecipeCard : React.FC<NewRecipeCardProps> = ({ onClick }) => {
   return (
     <div
-      className="group rounded-lg border border-transparent px-5 py-4 transition-colors border-gray-500 dark:border-gray-500 hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30 hover:cursor-pointer"
+      className="group rounded-lg border px-5 py-4 transition-colors border-gray-400 dark:border-gray-500 hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30 hover:cursor-pointer"
       onClick={() => onClick()}
     >
       <h2 className={`mb-3 text-2xl font-semibold flex items-center gap-x-2 `}>
