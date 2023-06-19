@@ -22,13 +22,8 @@ export interface RecipeIngredientUnit {
 }
 
 export const RecipeIngredientUnits: RecipeIngredientUnit[] = [
-  { code: '', type: UNIT_TYPE_OTHER },
+  // { code: '', type:  UNIT_TYPE_OTHER },
   { code: '-', type: UNIT_TYPE_OTHER },
-
-  { code: 'mg', type: UNIT_TYPE_MASS },
-  { code: 'g', type: UNIT_TYPE_MASS },
-  { code: 'hg', type: UNIT_TYPE_MASS },
-  { code: 'kg', type: UNIT_TYPE_MASS },
 
   { code: 'mm3', type: UNIT_TYPE_VOLUME, hidden: true },
   { code: 'cm3', type: UNIT_TYPE_VOLUME, hidden: true },
@@ -48,6 +43,11 @@ export const RecipeIngredientUnits: RecipeIngredientUnit[] = [
   { code: 'cm', type: UNIT_TYPE_LENGTH },
   { code: 'dm', type: UNIT_TYPE_LENGTH },
   { code: 'm', type: UNIT_TYPE_LENGTH },
+
+  { code: 'mg', type: UNIT_TYPE_MASS },
+  { code: 'g', type: UNIT_TYPE_MASS },
+  { code: 'hg', type: UNIT_TYPE_MASS },
+  { code: 'kg', type: UNIT_TYPE_MASS },
 
   { code: 'st', type: UNIT_TYPE_COUNT },
   { code: 'paket', type: UNIT_TYPE_COUNT },

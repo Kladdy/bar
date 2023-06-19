@@ -61,7 +61,7 @@ const RecipeIngredientsFeed: React.FC<RecipeIngredientsFeedProps> = ({ recipe, o
                             type="text"
                             id="amount"
                             placeholder={"mängd"}
-                            className="flex-none w-20 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block sm:text-sm border-gray-300 rounded-md"
+                            className=" px-2  flex-none w-20 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block sm:text-sm border-gray-300 rounded-md"
                             value={recipe.ingredients[ingredientIndex].amount || ''}
                             onChange={(e) => {
                               const newIngredients = setFieldOnSpecificListEntry(
@@ -73,7 +73,7 @@ const RecipeIngredientsFeed: React.FC<RecipeIngredientsFeedProps> = ({ recipe, o
                               onUpdateRecipe({ ...recipe, ingredients: newIngredients })
                             }}
                           />
-                          <div className="flex-none w-24 ">
+                          <div className="flex-none w-24">
                             <RecipeIngredientUnitSelect
                               recipe={recipe}
                               onUpdateRecipe={onUpdateRecipe}
@@ -84,7 +84,7 @@ const RecipeIngredientsFeed: React.FC<RecipeIngredientsFeedProps> = ({ recipe, o
                             type="text"
                             id="name"
                             placeholder={"namn"}
-                            className="flex-1 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block sm:text-sm border-gray-300 rounded-md"
+                            className=" px-2 flex-1 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block sm:text-sm border-gray-300 rounded-md"
                             value={recipe.ingredients[ingredientIndex].name || ''}
                             onChange={(e) => {
                               const newIngredients = setFieldOnSpecificListEntry(
@@ -117,7 +117,7 @@ const RecipeIngredientsFeed: React.FC<RecipeIngredientsFeedProps> = ({ recipe, o
                               leaveFrom="transform opacity-100 scale-100"
                               leaveTo="transform opacity-0 scale-95"
                             >
-                              <Menu.Items className="z-10 origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                              <Menu.Items className="z-50 origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                                 <div className="py-1">
                                   {ingredientIndex !== 0 ? (
                                     <Menu.Item>
@@ -217,7 +217,7 @@ const RecipeIngredientsFeed: React.FC<RecipeIngredientsFeedProps> = ({ recipe, o
             <div className="relative pb-8 inline-block">
               <button
                 type="button"
-                className="relative flex space-x-3 hover:bg-gray-100 rounded-full cursor-pointer"
+                className="relative flex space-x-3 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full cursor-pointer"
                 onClick={() =>
                   onUpdateRecipe({
                     ...recipe,

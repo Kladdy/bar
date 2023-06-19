@@ -1,16 +1,18 @@
 "use client";
 
 import { IRecipe, mockRecipes } from '@/common/types'
+import NewRecipeCard from '@/components/NewRecipeCard';
 import RecipeCard from '@/components/RecipeCard'
 import RecipeModal from '@/components/RecipeModal';
 import Image from 'next/image'
 import { useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
+import { v4 as uuidv4 } from 'uuid'
 
 export default function Home() {
 
   const [openedRecipe, setOpenedRecipe] = useState<IRecipe | null>(null)
-
+  const [isCreatingRecipe, setIsCreatingRecipe] = useState<boolean>(false)
 
   const recipes: IRecipe[] = mockRecipes;
 
@@ -22,15 +24,14 @@ export default function Home() {
           recipe={openedRecipe} 
           setRecipe={(recipe) =>
             {
-              toast.success('Updated')
               setOpenedRecipe(recipe)
             }
           }
           onClose={() => 
             {
-              toast.success('Closed')
               setOpenedRecipe(null)
             }}
+          isNewRecipe={isCreatingRecipe}
         />
       )}
 
@@ -48,12 +49,31 @@ export default function Home() {
               key={recipe.id}
               recipe={recipe}
               onClick={() => {
-                toast.success('Opened')
+                setIsCreatingRecipe(false)
                 setOpenedRecipe(recipe)
               }}
             />
           ))}
+          
         </div>
+
+        <div className="grid grid-cols-1 mt-10">
+          <NewRecipeCard
+            onClick={() => {
+              setIsCreatingRecipe(true)
+              setOpenedRecipe({
+                id: uuidv4(),
+                description: '',
+                name: '',
+                ingredients: [],
+                steps: [],
+                url: '',
+              })}
+            }
+          />
+        </div>
+
+        
       </main>
     </>
   )

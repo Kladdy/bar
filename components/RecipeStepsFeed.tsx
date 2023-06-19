@@ -42,7 +42,7 @@ const RecipeStepsFeed: React.FC<RecipeStepsFeedProps> = ({ recipe, onUpdateRecip
                     {stepIndex + 1}
                   </span>
                 </div>
-                <div className="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4 dark:text-gray-200">
+                <div className="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4 dark:text-gray-800">
                   {!viewOnly ? (
                     <>
                       <div className="w-full">
@@ -50,7 +50,7 @@ const RecipeStepsFeed: React.FC<RecipeStepsFeedProps> = ({ recipe, onUpdateRecip
                           <TextareaAutosize
                             id={`step-${step.id}`}
                             minRows={1}
-                            className="resize-none shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md"
+                            className="px-2 py-1.5 resize-none shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md"
                             value={recipe.steps[stepIndex].description || ''}
                             onChange={(e) => {
                               const newSteps = setFieldOnSpecificListEntry(
@@ -83,7 +83,7 @@ const RecipeStepsFeed: React.FC<RecipeStepsFeedProps> = ({ recipe, onUpdateRecip
                               leaveFrom="transform opacity-100 scale-100"
                               leaveTo="transform opacity-0 scale-95"
                             >
-                              <Menu.Items className="z-10 origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                              <Menu.Items className="z-50 origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                                 <div className="py-1">
                                   {stepIndex !== 0 ? (
                                     <Menu.Item>
@@ -173,7 +173,7 @@ const RecipeStepsFeed: React.FC<RecipeStepsFeedProps> = ({ recipe, onUpdateRecip
             <div className="relative pb-8 inline-block">
               <button
                 type="button"
-                className="relative flex space-x-3 hover:bg-gray-100 rounded-full cursor-pointer"
+                className="relative flex space-x-3 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full cursor-pointer"
                 onClick={() => onUpdateRecipe({ ...recipe, steps: [...recipe.steps, getDefaultStep() as IStep] })}
               >
                 <div>

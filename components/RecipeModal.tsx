@@ -10,9 +10,10 @@ interface RecipeModalProps {
   recipe: IRecipe
   setRecipe: (recipe: IRecipe) => void
   onClose: () => void
+  isNewRecipe: boolean
 }
 
-const RecipeModal : React.FC<RecipeModalProps> = ({recipe, setRecipe, onClose}) => {
+const RecipeModal : React.FC<RecipeModalProps> = ({recipe, setRecipe, onClose, isNewRecipe}) => {
 
   return (
     <Transition.Root show={recipe == null ? false : true} as={Fragment}>
@@ -40,7 +41,7 @@ const RecipeModal : React.FC<RecipeModalProps> = ({recipe, setRecipe, onClose}) 
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white dark:bg-gray-900 px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
+              <Dialog.Panel className="relative transform  rounded-lg bg-white dark:bg-gray-900 px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
                 <div>
                   <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
                     <BeakerIcon className="h-6 w-6 text-green-600" aria-hidden="true" />
@@ -53,18 +54,35 @@ const RecipeModal : React.FC<RecipeModalProps> = ({recipe, setRecipe, onClose}) 
                   </div>
                 </div>
                 <div className="mt-2 text-gray-800 dark:text-gray-200 text-sm">
+                  {isNewRecipe && (
+                    <>
+                    <h5 className="font-semibold mt-6 mb-4 ">Namn</h5>
+                    <div className="">
+                      <input
+                        type="text"
+                        name="name"
+                        id="name"
+                        className="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        placeholder="Ett gott drinknamn..."
+                        value={recipe.name}
+                        onChange={(e) => setRecipe({ ...recipe, name: e.target.value })}
+                      />
+                    </div>
+                    </>
+                  )}
+
                   <h5 className="font-semibold mt-6 mb-4 ">Ingredienser</h5>
                   <RecipeIngredientsFeed 
                     recipe={recipe}
                     onUpdateRecipe={(recipe) => setRecipe(recipe)} 
-                    viewOnly={true}
+                    viewOnly={!isNewRecipe}
                   />
 
                   <h5 className="font-semibold mt-6 mb-4">Steg</h5>
                   <RecipeStepsFeed
                     recipe={recipe}
                     onUpdateRecipe={(recipe) => setRecipe(recipe)}
-                    viewOnly={true}
+                    viewOnly={!isNewRecipe}
                   />
                 </div>
                 <div className="mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-1 sm:gap-3">
