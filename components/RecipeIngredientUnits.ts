@@ -22,6 +22,7 @@ export interface RecipeIngredientUnit {
 }
 
 export const RecipeIngredientUnits: RecipeIngredientUnit[] = [
+  { code: '', type: UNIT_TYPE_OTHER },
   { code: '-', type: UNIT_TYPE_OTHER },
 
   { code: 'mg', type: UNIT_TYPE_MASS },
