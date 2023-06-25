@@ -73,4 +73,160 @@ export const mockRecipes: IRecipe[] = [
     ],
     url: '',
   },
+  {
+    id: '2',
+    name: 'Sigges Båtsman',
+    description: '',
+    ingredients: [
+      {
+        id: '1',
+        name: 'vodka',
+        amount: '8',
+        unit: 'cl',
+      },
+      {
+        id: '2',
+        name: 'ananasjuice',
+        amount: '8',
+        unit: 'cl',
+      },
+      {
+        id: '3',
+        name: 'tranbärsjuice',
+        amount: '8',
+        unit: 'cl',
+      },
+      {
+        id: '4',
+        name: 'limejuice',
+        amount: 'lite',
+        unit: '',
+      },
+      {
+        id: '5',
+        name: 'is',
+        amount: '',
+        unit: '',
+      },
+    ],
+    steps: [
+      {
+        id: '1',
+        description: 'Blanda',
+      },
+      {
+        id: '2',
+        description: 'Skaka',
+      },
+      {
+        id: '3',
+        description: 'Njut',
+      },
+    ],
+    url: '',
+  },
+  {
+    id: '3',
+    name: 'Sigges Båtsman',
+    description: '',
+    ingredients: [
+      {
+        id: '1',
+        name: 'vodka',
+        amount: '8',
+        unit: 'cl',
+      },
+      {
+        id: '2',
+        name: 'ananasjuice',
+        amount: '8',
+        unit: 'cl',
+      },
+      {
+        id: '3',
+        name: 'tranbärsjuice',
+        amount: '8',
+        unit: 'cl',
+      },
+      {
+        id: '4',
+        name: 'limejuice',
+        amount: 'lite',
+        unit: '',
+      },
+      {
+        id: '5',
+        name: 'is',
+        amount: '',
+        unit: '',
+      },
+    ],
+    steps: [
+      {
+        id: '1',
+        description: 'Blanda',
+      },
+      {
+        id: '2',
+        description: 'Skaka',
+      },
+      {
+        id: '3',
+        description: 'Njut',
+      },
+    ],
+    url: '',
+  },
+  {
+    id: '4',
+    name: 'Sigges Båtsman',
+    description: '',
+    ingredients: [
+      {
+        id: '1',
+        name: 'vodka',
+        amount: '8',
+        unit: 'cl',
+      },
+      {
+        id: '2',
+        name: 'ananasjuice',
+        amount: '8',
+        unit: 'cl',
+      },
+      {
+        id: '3',
+        name: 'tranbärsjuice',
+        amount: '8',
+        unit: 'cl',
+      },
+      {
+        id: '4',
+        name: 'limejuice',
+        amount: 'lite',
+        unit: '',
+      },
+      {
+        id: '5',
+        name: 'is',
+        amount: '',
+        unit: '',
+      },
+    ],
+    steps: [
+      {
+        id: '1',
+        description: 'Blanda',
+      },
+      {
+        id: '2',
+        description: 'Skaka',
+      },
+      {
+        id: '3',
+        description: 'Njut',
+      },
+    ],
+    url: '',
+  },
 ];

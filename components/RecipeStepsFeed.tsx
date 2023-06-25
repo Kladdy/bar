@@ -42,7 +42,7 @@ const RecipeStepsFeed: React.FC<RecipeStepsFeedProps> = ({ recipe, onUpdateRecip
                     {stepIndex + 1}
                   </span>
                 </div>
-                <div className="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4 dark:text-gray-800">
+                <div className="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4 dark:text-gray-200">
                   {!viewOnly ? (
                     <>
                       <div className="w-full">
