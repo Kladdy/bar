@@ -5,7 +5,7 @@ import NewRecipeCard from '@/components/NewRecipeCard';
 import RecipeCard from '@/components/RecipeCard'
 import RecipeModal from '@/components/RecipeModal';
 import Image from 'next/image'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -14,7 +14,26 @@ export default function Home() {
   const [openedRecipe, setOpenedRecipe] = useState<IRecipe | null>(null)
   const [isCreatingRecipe, setIsCreatingRecipe] = useState<boolean>(false)
 
-  const recipes: IRecipe[] = mockRecipes;
+  const [recipes, setRecipes] = useState<IRecipe[]>([])
+
+  useEffect(() => {
+    fetchRecipes()
+  }, [])
+
+  const fetchRecipes = () => {
+    fetch('/api', {
+      method: 'GET',
+    }).then((res) => {
+      if (res.ok) {
+        res.json().then((data) => {
+          setRecipes(data)  
+        })
+        toast.success('Recepten har hämtats.')
+      } else {
+        toast.error('Något gick fel när recepten skulle hämtas. Försök igen senare.')
+      }
+    })
+  }
 
   return (
     <>
@@ -68,6 +87,7 @@ export default function Home() {
                 ingredients: [],
                 steps: [],
                 url: '',
+                visible: false,
               })}
             }
           />

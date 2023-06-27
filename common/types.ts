@@ -5,6 +5,7 @@ export interface IRecipe {
   ingredients: IIngredient[]
   steps: IStep[]
   url: string
+  visible: boolean
 }
 
 export interface IIngredient {
@@ -72,6 +73,7 @@ export const mockRecipes: IRecipe[] = [
       },
     ],
     url: '',
+    visible: true,
   },
   {
     id: '2',
@@ -124,6 +126,7 @@ export const mockRecipes: IRecipe[] = [
       },
     ],
     url: '',
+    visible: true,
   },
   {
     id: '3',
@@ -176,6 +179,7 @@ export const mockRecipes: IRecipe[] = [
       },
     ],
     url: '',
+    visible: true,
   },
   {
     id: '4',
@@ -228,5 +232,6 @@ export const mockRecipes: IRecipe[] = [
       },
     ],
     url: '',
+    visible: true,
   },
 ];
