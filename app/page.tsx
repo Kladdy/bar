@@ -88,7 +88,7 @@ export default function Home() {
         <h1 className="text-6xl font-bold bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">
           bar.
         </h1>
-        <h3 className="text-xl  font-bold mt-5 mb-5 text-gray-500">
+        <h3 className="text-xl font-bold mt-5 mb-5 text-gray-500">
           <a target="_blank" rel="noopener noreferrer" href='https://sigfrid.stjarnholm.com' className='hover:underline'>av Sigfrid Stjärnholm</a>
         </h3>
 
