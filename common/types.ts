@@ -1,3 +1,9 @@
+export interface IData {
+  recipe: IRecipe
+  auth: string,
+  date: Date
+}
+
 export interface IRecipe {
   id: string,
   name: string

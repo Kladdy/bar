@@ -1,6 +1,6 @@
 "use client";
 
-import { IRecipe, mockRecipes } from '@/common/types'
+import { IData, IRecipe, mockRecipes } from '@/common/types'
 import NewRecipeCard from '@/components/NewRecipeCard';
 import RecipeCard from '@/components/RecipeCard'
 import RecipeModal from '@/components/RecipeModal';
@@ -13,12 +13,16 @@ export default function Home() {
 
   const [openedRecipe, setOpenedRecipe] = useState<IRecipe | null>(null)
   const [isCreatingRecipe, setIsCreatingRecipe] = useState<boolean>(false)
+  const [investigatedData, setInvestigatedData] = useState<IData | null>(null)
 
   const [recipes, setRecipes] = useState<IRecipe[]>([])
 
-  useEffect(() => {
-    fetchRecipes()
-  }, [])
+    // Everytime investigatedData changes, check if it is null. If it is, fetch recipes. This also fetches the recipes on page load.
+    useEffect(() => {
+      if (investigatedData === null) {
+        fetchRecipes()
+      }
+    }, [investigatedData])
 
   const fetchRecipes = () => {
     fetch('/api', {
@@ -34,6 +38,30 @@ export default function Home() {
       }
     })
   }
+
+  // On page load, check the query parameters. If a query parameter "data" exists, store it and remove the query parameter.
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search)
+    const dataUrlEncoded = urlParams.get('data')
+    if (dataUrlEncoded) {
+      const data = decodeURIComponent(dataUrlEncoded)
+
+      const parsedData = JSON.parse(data) as IData
+      console.log(parsedData)
+      if (parsedData) {
+        setIsCreatingRecipe(true)
+        setOpenedRecipe(parsedData.recipe)
+        setInvestigatedData(parsedData)
+      }
+      urlParams.delete('data')
+      // If there are no other url params, dont add the question mark
+      if (urlParams.toString() === '') {
+        window.history.replaceState({}, '', `${window.location.pathname}`)
+      } else {
+        window.history.replaceState({}, '', `${window.location.pathname}?${urlParams}`)
+      }
+    }
+  }, [])
 
   return (
     <>
@@ -51,6 +79,8 @@ export default function Home() {
               setOpenedRecipe(null)
             }}
           isNewRecipe={isCreatingRecipe}
+          investigatedData={investigatedData}
+          setInvestigatedData={setInvestigatedData}
         />
       )}
 

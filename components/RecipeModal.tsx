@@ -1,7 +1,7 @@
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { BeakerIcon, CheckIcon } from '@heroicons/react/24/outline'
-import { IRecipe } from '@/common/types'
+import { IData, IRecipe } from '@/common/types'
 import RecipeIngredientsFeed from './RecipeIngredientsFeed'
 import RecipeStepsFeed from './RecipeStepsFeed'
 import toast from 'react-hot-toast'
@@ -15,13 +15,21 @@ interface RecipeModalProps {
   setRecipe: (recipe: IRecipe) => void
   onClose: () => void
   isNewRecipe: boolean
+  investigatedData: IData | null
+  setInvestigatedData: (data: IData | null) => void
 }
 
-const RecipeModal : React.FC<RecipeModalProps> = ({recipe, setRecipe, onClose, isNewRecipe}) => {
+const RecipeModal : React.FC<RecipeModalProps> = ({recipe, setRecipe, onClose, isNewRecipe, investigatedData, setInvestigatedData}) => {
 
   const submitIsDisabled = recipe.name === '' || recipe.ingredients.length === 0
 
   const submitRecipe = () => {
+    // If we are submitting a recipe that is investigated, approve it and return. Otherwise, submit it as a new recipe.
+    if (investigatedData != null) {
+      approveRecipe()
+      return
+    }
+
     fetch('/api', {
       method: 'POST',
       body: JSON.stringify(recipe),
@@ -31,6 +39,23 @@ const RecipeModal : React.FC<RecipeModalProps> = ({recipe, setRecipe, onClose, i
         onClose()
       } else {
         toast.error('Något gick fel när receptet skulle skickas in. Försök igen senare.')
+      }
+    })
+  }
+
+  
+  const approveRecipe = () => {
+    // Send auth key as query parameter in order 
+    fetch(`/api?auth=${investigatedData?.auth}`, {
+      method: 'PUT',
+      body: JSON.stringify(recipe),
+    }).then((res) => {
+      if (res.ok) {
+        toast.success('Receptet har godkänts.')
+        setInvestigatedData(null)
+        onClose()
+      } else {
+        toast.error('Något gick fel när receptet skulle godkännas. Försök igen senare.')
       }
     })
   }
