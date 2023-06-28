@@ -84,7 +84,7 @@ export default function Home() {
         />
       )}
 
-      <main className="flex min-h-screen flex-col items-center p-24">
+      <main className="flex min-h-screen flex-col items-center p-6 sm:p-10 lg:p-24">
         <h1 className="text-6xl font-bold bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">
           bar.
         </h1>
